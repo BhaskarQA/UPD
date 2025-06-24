@@ -1,9 +1,12 @@
-
-# Playwright
+# Node modules
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/videos/
-env
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+videos/
+
+# Environment file
+.env
