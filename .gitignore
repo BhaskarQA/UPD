@@ -9,4 +9,4 @@ playwright/.cache/
 videos/
 
 # Environment file
-.env
+.env*
