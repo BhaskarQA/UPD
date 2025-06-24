@@ -1,0 +1,263 @@
+[
+  {
+    "description": "  As a user of the Ucentrics application\n  I want to be able to login with valid credentials\n  So that I can access the application features",
+    "elements": [
+      {
+        "description": "",
+        "id": "user-login;i-log-in-with-valid-credentials",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "I log in with valid credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 255926666
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I launch the Ucentrics URL and navigate to the login page",
+            "match": {
+              "location": "step-definitions/login-steps.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9822533542
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I enter a valid email and password",
+            "match": {
+              "location": "step-definitions/login-steps.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 157746166
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I click the Sign in button",
+            "match": {
+              "location": "step-definitions/login-steps.js:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2074279833
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "I should be redirected to the dashboard page",
+            "match": {
+              "location": "step-definitions/login-steps.js:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10002584500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "I should verify the page title",
+            "match": {
+              "location": "step-definitions/login-steps.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3271082
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 131081541
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "user-login;failed-login-with-invalid-credentials",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Failed login with invalid credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 96919916
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 14,
+            "name": "I launch the Ucentrics URL and navigate to the login page",
+            "match": {
+              "location": "step-definitions/login-steps.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9701888957
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I enter invalid username and password",
+            "match": {
+              "location": "step-definitions/login-steps.js:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 158104832
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "I click the Sign in button",
+            "match": {
+              "location": "step-definitions/login-steps.js:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2077065792
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "I should see an error message",
+            "match": {
+              "location": "step-definitions/login-steps.js:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 19979499
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26162042
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "user-login;failed-login-with-empty-credentials",
+        "keyword": "Scenario",
+        "line": 19,
+        "name": "Failed login with empty credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 160069708
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 20,
+            "name": "I launch the Ucentrics URL and navigate to the login page",
+            "match": {
+              "location": "step-definitions/login-steps.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9712224166
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 21,
+            "name": "I leave username and password fields empty",
+            "match": {
+              "location": "step-definitions/login-steps.js:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 153890416
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 22,
+            "name": "I click the Sign in button",
+            "match": {
+              "location": "step-definitions/login-steps.js:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2067924459
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "I should see validation error messages",
+            "match": {
+              "location": "step-definitions/login-steps.js:59"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13597415
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 11371334
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "user-login",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "User Login",
+    "tags": [],
+    "uri": "features/login.feature"
+  }
+]

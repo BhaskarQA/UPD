@@ -1,0 +1,34 @@
+{
+  "name": "ucentrics-web-automation",
+  "version": "1.0.0",
+  "description": "BDD web automation framework for Ucentrics",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/**/*.feature --format json:reports/cucumber_report.json",
+    "test:workflow": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/createWorkflow.feature --format json:reports/cucumber_report.json",
+    "test:workflowStep": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/createWorkflowStep.feature --format json:reports/cucumber_report.json",
+    "test:login": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/login.feature --format json:reports/cucumber_report.json",
+    "test:3dmodel": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/3dModel.feature --format json:reports/cucumber_report.json",
+    "report": "node helpers/report-generator.js",
+    "email": "node helpers/email-report.js",
+    "test-and-report": "npm test && npm run report && npm run email"
+  },
+  "keywords": [
+    "playwright",
+    "cucumber",
+    "bdd",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cucumber/cucumber": "^9.5.1",
+    "@playwright/test": "^1.40.0",
+    "cucumber-html-reporter": "^7.1.0",
+    "dotenv": "^16.3.1",
+    "moment": "^2.29.4",
+    "node-fetch": "^2.7.0",
+    "nodemailer": "^6.9.7",
+    "node-cron": "^3.0.2"
+  }
+}
