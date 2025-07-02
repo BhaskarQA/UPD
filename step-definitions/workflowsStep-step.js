@@ -27,7 +27,6 @@ When(/^I click the node$/, async function (dataTable) {
 When(/^I fill the details for type section and instruction section$/, async function (dataTable) {
     const workflowStepPage = new WorkflowStepPage(this.page)
     const [row] = dataTable.hashes(); // gets the first row as an object
-
     const { Type, Instruction } = row;
     await this.page.waitForTimeout(3000);
     await workflowStepPage.fillType(Type);

@@ -9,18 +9,16 @@ Feature: 3DModel workflow functionality check
     And I enter the Title and Description for the workflow
     And I click on sumbit workflow button
     Then I verify the workflow is created successfull
+
+
+
    When I fill the details for type section and instruction section
   | Type                    | Instruction                                                                                         |
   | Setting up the machine | Setting Up Machine means the carrying out of final machine adjustments and making ready before a machine can be successfully operated. |
-  And I create a another node in workflow
-And I fill the details for type section and instruction section
-  | Type                    | Instruction                                                                                         |
-  | Setting up the machine | Setting Up Machine means the carrying out of final machine adjustments and making ready before a machine can be successfully operated. |
-  And I click the node
-    | node |
-    | 01   |
-  # And I click the ARVR section
-  # And I click "Choose file" and select "Upload New File"
 
+  And I click the ARVR section
+  And I click "Choose file" and select "Upload New File"
+  
 
+  #Scenario: 
 

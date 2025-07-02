@@ -9,6 +9,8 @@
     "test:workflowStep": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/createWorkflowStep.feature --format json:reports/cucumber_report.json",
     "test:login": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/login.feature --format json:reports/cucumber_report.json",
     "test:3dmodel": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/3dModel.feature --format json:reports/cucumber_report.json",
+    "test:workflowBehaviour": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/workflowBehaviour.feature --format json:reports/cucumber_report.json",
+    "test:test": "cucumber-js --require cucumber.conf.js --require step-definitions/**/*.js features/test/test.feature --format json:reports/cucumber_report.json",
     "report": "node helpers/report-generator.js",
     "email": "node helpers/email-report.js",
     "test-and-report": "npm test && npm run report && npm run email"
@@ -24,11 +26,15 @@
   "dependencies": {
     "@cucumber/cucumber": "^9.5.1",
     "@playwright/test": "^1.40.0",
+    "axios": "^1.10.0",
     "cucumber-html-reporter": "^7.1.0",
     "dotenv": "^16.3.1",
     "moment": "^2.29.4",
+    "node-cron": "^3.0.2",
     "node-fetch": "^2.7.0",
-    "nodemailer": "^6.9.7",
-    "node-cron": "^3.0.2"
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "mailslurp-client": "^15.24.1"
   }
 }

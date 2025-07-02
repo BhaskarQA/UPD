@@ -21,3 +21,9 @@ Feature: User Login
     When I leave username and password fields empty
     And I click the Sign in button
     Then I should see validation error messages
+
+  Scenario: Forget password functionality
+    Given I launch the Ucentrics URL and navigate to the login page
+    When I click on forget password, enter and verify email 
+    And I completing the password reset with new password
+    #the forget password  flow is not fully implemented so stopping here.

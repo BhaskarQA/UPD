@@ -10,8 +10,10 @@ When(/^I click the ARVR section$/, async function () {
 });
 
 When('I click {string} and select {string}', async function (chooseFileText, uploadOption) {
-    await this.page.click(`button:has-text("${chooseFileText}")`);
-    await this.page.click(`text=${uploadOption}`);
+    this.threedmodel = new ThreeDModelPage(this.page);
+    await this.threedmodel.choose3DFiles();
+    await this.page.waitForTimeout(5000);
+    await this.threedmodel.fullscreeButton();
   });
 
 

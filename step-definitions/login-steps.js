@@ -1,8 +1,15 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
 const LoginPage = require('../page-objects/login-page');
+const { MailSlurp } = require('mailslurp-client');
+const axios = require('axios');
+const MAILINATOR_API_KEY = process.env.MAILINATOR_API_KEY;
+const inboxName = 'ucentrics_test_inbox'; // pick any name
+const emailAddress = `${inboxName}@mailinator.com`;
 
-require('dotenv').config();
+
+
+require('dotenv').config(); 
 
 Given('I launch the Ucentrics URL and navigate to the login page', async function () {
   this.loginPage = new LoginPage(this.page);
@@ -71,3 +78,40 @@ Then('I should see validation error messages', async function () {
   expect(emailErrorText).toContain('Please enter your Email Address');
   expect(passwordErrorText).toContain('Please enter your password');
 });
+
+  
+  When('I click on forget password, enter and verify email', async function () {
+    this.loginPage = new LoginPage(this.page);
+    await this.loginPage.forgetPasswordLink();
+  
+    const inbox = sharedContext.inbox;
+    const mailslurp = sharedContext.mailslurp;
+  
+    if (!inbox || !mailslurp) {
+      throw new Error('Shared inbox or MailSlurp not found. Make sure it is created in a previous scenario.');
+    }
+  
+    await this.page.fill('input[id="email"]', inbox.emailAddress);
+    await this.loginPage.clickSendCode();
+    await this.loginPage.waitForTimeout(20000); // not proper solution need to comeup with new implementation
+    const email = await mailslurp.waitForLatestEmail(inbox.id,);
+    const otpMatch = email.body.match(/Your code is: (\d{6})/);
+    const otp = otpMatch ? otpMatch[1] : null;
+  
+    if (!otp) {
+      throw new Error('OTP not found in the email body!');
+    }
+  
+    await this.loginPage.verificationCode(otp);
+    await this.loginPage.verifyCodeSubmit();
+    await this.loginPage.continue();
+  });
+  
+  Then('I completing the password reset with new password', async function () {
+    this.loginPage = new LoginPage(this.page);
+    await this.loginPage.newPassword(process.env.PASSWORD);
+    await this.loginPage.conformPassword(process.env.PASSWORD);
+    await this.loginPage.continue();
+    await this.page.waitForTimeout(10000);
+  });
+  

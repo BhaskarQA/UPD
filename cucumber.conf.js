@@ -4,116 +4,105 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
-// Set default timeout
 setDefaultTimeout(60 * 1000);
 
-// Ensure directories exist
 const screenshotsDir = path.join(__dirname, 'screenshots');
 const videosDir = path.join(__dirname, 'videos');
-const reportsDir = path.join(__dirname, 'reports');
-
-[screenshotsDir, videosDir, reportsDir].forEach(dir => {
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-    }
+[screenshotsDir, videosDir].forEach(dir => {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 });
 
-// Global browser for the test suite
 let browser;
+let context;
+let page;
+let currentFeature;
 
-// Launch browser before all tests
-BeforeAll(async function () {
-    browser = await chromium.launch({
-        headless: false,
-        slowMo: 50
-    });
-    console.log('Browser launched');
+// Launch browser once
+BeforeAll(async () => {
+  browser = await chromium.launch({ headless: false, slowMo: 50 });
+  console.log('Browser launched');
 });
 
-// Close browser after all tests
-AfterAll(async function () {
-    if (browser) {
-        await browser.close();
-        console.log('Browser closed');
-    }
-});
+// Create context/page once per feature
+Before(async function (scenario) {
+  const featureName = scenario.gherkinDocument.feature.name;
 
-// Create new context and page for each scenario
-Before(async function () {
-    // Create a new browser context for each scenario
-    this.context = await browser.newContext({
-        recordVideo: {
-            dir: videosDir
-        }
+  // Only re-init context if the feature changes
+  if (currentFeature !== featureName) {
+    currentFeature = featureName;
+
+    if (context) await context.close();
+
+    context = await browser.newContext({
+      recordVideo: { dir: videosDir }
     });
 
-    // Create a new page in the context
-    this.page = await this.context.newPage();
+    page = await context.newPage();
 
-    // Store test info
-    this.testInfo = {
-        scenarioName: ''
-    };
+    // Save on 'this' so steps can access it
+    this.context = context;
+    this.page = page;
 
-    // Attempt to login if needed
-    try {
-        // Check if we have stored auth state
-        const authFile = path.join(__dirname, 'auth.json');
-        if (fs.existsSync(authFile)) {
-            // Use stored auth state
-            const storageState = JSON.parse(fs.readFileSync(authFile, 'utf8'));
-            await this.context.addCookies(storageState.cookies || []);
-            console.log('Loaded authentication state from file');
-        } else {
-            // Perform login
-            await this.page.goto(process.env.BASE_URL);
-            await this.page.fill("//input[@id='email']", process.env.USERNAME);
-            await this.page.fill("//input[@id='password']", process.env.PASSWORD);
-            await this.page.click("//button[@type='submit']");
-
-            // Wait for login to complete
-            await this.page.waitForNavigation();
-
-            // Save auth state for future tests
-            const storageState = await this.context.storageState();
-            fs.writeFileSync(authFile, JSON.stringify(storageState));
-            console.log('Saved authentication state to file');
-        }
-    } catch (error) {
-        console.error('Failed to setup authentication:', error);
-        // Continue with the test, the specific step will handle login if needed
-    }
+    // Optional: login once per feature
+    await loginOncePerFeature(context, page);
+  } else {
+    // Reuse the same context/page
+    this.context = context;
+    this.page = page;
+  }
 });
 
-// Take screenshot on failure and close page after each scenario
+// Close context after the feature (simulated using After with tracking)
 After(async function (scenario) {
-    // Store scenario name for screenshot
-    this.testInfo.scenarioName = scenario.pickle.name;
+  this.testInfo = { scenarioName: scenario.pickle.name };
 
-    if (scenario.result.status === Status.FAILED) {
-        // Take screenshot on failure
-        if (this.page) {
-            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            const scenarioName = scenario.pickle.name.replace(/\s+/g, '-').toLowerCase();
-            const screenshotPath = path.join(screenshotsDir, `${scenarioName}-${timestamp}.png`);
+  if (scenario.result.status === Status.FAILED && this.page) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const scenarioName = scenario.pickle.name.replace(/\s+/g, '-').toLowerCase();
+    const screenshotPath = path.join(screenshotsDir, `${scenarioName}-${timestamp}.png`);
 
-            try {
-                await this.page.screenshot({ path: screenshotPath, fullPage: true });
-                console.log(`Screenshot saved to: ${screenshotPath}`);
-
-                // Attach screenshot to report
-                const screenshot = fs.readFileSync(screenshotPath);
-                this.attach(screenshot, 'image/png');
-            } catch (error) {
-                console.error('Failed to take screenshot:', error);
-            }
-        } else {
-            console.error('Cannot take screenshot: page object is undefined');
-        }
+    try {
+      await this.page.screenshot({ path: screenshotPath, fullPage: true });
+      const screenshot = fs.readFileSync(screenshotPath);
+      this.attach(screenshot, 'image/png');
+    } catch (error) {
+      console.error('Screenshot error:', error);
     }
+  }
 
-    // Save video if it exists
-    if (this.context) {
-        await this.context.close();
-    }
+  // Simulate feature end: if it's the last scenario of the feature
+  const nextFeatureName = scenario.gherkinDocument?.feature?.name;
+  if (nextFeatureName !== currentFeature && context) {
+    await context.close();
+    context = null;
+    page = null;
+    console.log(`Closed context for feature: ${currentFeature}`);
+    currentFeature = null;
+  }
 });
+
+// Close browser once
+AfterAll(async () => {
+  if (browser) await browser.close();
+  console.log('Browser closed');
+});
+
+// Helper: login and save auth state
+async function loginOncePerFeature(context, page) {
+  const authFile = path.join(__dirname, 'auth.json');
+  if (fs.existsSync(authFile)) {
+    const storageState = JSON.parse(fs.readFileSync(authFile, 'utf8'));
+    await context.addCookies(storageState.cookies || []);
+    console.log('Auth loaded');
+  } else {
+    await page.goto(process.env.BASE_URL);
+    await page.fill("//input[@id='email']", process.env.USERNAME);
+    await page.fill("//input[@id='password']", process.env.PASSWORD);
+    await page.click("//button[@type='submit']");
+    await page.waitForNavigation();
+
+    const state = await context.storageState();
+    fs.writeFileSync(authFile, JSON.stringify(state));
+    console.log('Auth saved');
+  }
+}

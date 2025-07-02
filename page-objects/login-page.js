@@ -9,6 +9,14 @@ class LoginPage {
     this.errorMessageLocator = "//div[@class='error pageLevel']//following-sibling::p"
     this.errorMessageForEmail = "(//div[@class='error itemLevel']//following-sibling::p)[1]"
     this.errorMessageForPassword = "(//div[@class='error itemLevel']//following-sibling::p)[2]"
+    this.signInButton = "//a[@id='createAccount']"
+    this.sendCodeButton="//button[@class='sendCode']"
+    this.verificationCodeInput="//input[@id='emailVerificationCode']"
+    this.verifyCodeSubmitButton="//div[@class='buttons']//button[contains(@class, 'verifyCode')]"
+    this.newPasswordInput="//div[@class='attrEntry']//input[@id='newPassword']"
+    this.conformPasswordInput="//div[@class='attrEntry']//input[@id='reenterPassword']"
+    this.continueButton="//div[@class='buttons']//button[@id='continue']"
+    this.forgetPassword='//div[@class="forgot-password center-height"]'
   }
 
   async navigate() {
@@ -28,11 +36,31 @@ class LoginPage {
     await this.page.click(this.loginButton);
     await this.page.waitForTimeout(2000);
   }
-
+  
+  
+  async clickSendCode(){
+    await this.page.click(this.sendCodeButton)
+  }
   async getPageTitle() {
     return await this.page.title();
   }
 
+  async verifyCodeSubmit(){
+    await this.page.click(this.verifyCodeSubmitButton)
+  }
+
+  async newPassword(password){
+    await this.page.fill(this.newPasswordInput, password)
+  }
+
+  async conformPassword(password){
+    await this.page.fill(this.conformPasswordInput, password)
+  }
+
+  async continue(){
+    await this.page.click(this.continueButton)
+  }
+  
   async getCurrentUrl() {
     return await this.page.url();
   }
@@ -56,6 +84,15 @@ class LoginPage {
   async getPasswordErrorMessage() {
     const passwordErrorElement = await this.page.locator(this.errorMessageForPassword);
     return await passwordErrorElement.textContent();
+  }
+
+  async forgetPasswordLink(){
+    await this.page.click(this.forgetPassword)
+  };
+
+  
+  async verificationCode(otp){
+    await this.page.fill(this.verificationCodeInput, otp)
   }
 }
 
