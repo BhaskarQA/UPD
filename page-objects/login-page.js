@@ -19,6 +19,14 @@ class LoginPage {
     this.forgetPassword='//div[@class="forgot-password center-height"]'
   }
 
+  async loginAdmin(){
+    await this.page.goto(process.env.BASE_URL);
+    await this.page.waitForTimeout(5000);
+    await this.page.fill(this.emailInput, process.env.USERNAME);
+    await this.page.fill(this.passwordInput, process.env.PASSWORD);
+    await this.page.click(this.loginButton);
+  }
+
   async navigate() {
     await this.page.goto(process.env.BASE_URL);
     await this.page.waitForTimeout(8000);

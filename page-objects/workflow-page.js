@@ -9,29 +9,28 @@ class  WorkflowPage {
     this.workflowDescriptionInput = '//textarea[@id="flow-description"]';
     this.submitWorkflowBtn = '(//button[contains(@class,"rizzui-button")])[3]';
     this.uploadImageAndVideoTitle = '//p[contains(text(),"Choose file")]';
-    this.addFormButtonbtn = "//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[4]/div/div[2]/div[2]/button";
-    this.shortAnswerButtonbtn = '//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[4]/div/div[3]/div/ul/li[1]';
-    this.paraAnswerButton = '//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[4]/div/div[3]/div/ul/li[2]';
-    this.multipleChoiceButton = '//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[4]/div/div[3]/div/ul/li[3]';
-    this.photoEvidenceButton='//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[4]/div/div[3]/div/ul/li[4]';  
-    this.shortLabelPlaceholder='//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[1]/div/input'
-    this.paraLabelPlaceholder=' //html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[2]/div/div/div/input'
-    this.multipleLabelPlaceholder='//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[3]/div/div[2]/input'
-    this.photoEvidencePlaceholder='//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[4]/div/input'
-    this.shortAnsPlaceholder='//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[1]/div/div[2]/input'
-    this.paraAnsPlaceholder= '//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[2]/div/div[2]/div[2]/textarea'
-    this.multipleAns1Placeholder='//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[3]/div/div[2]/div[1]/div/input'
-    this.multipleAns2Placeholder='//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[3]/div/div[2]/div[2]/div/input'
-    this.multipleAns3Placeholder='//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[5]/div[3]/div/div[2]/div[3]/div/input'
+    this.addFormButtonbtn = "//html/body/main/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[4]/div/div[2]/div[2]/button";// bash bro help me 
+    this.shortAnswerButtonbtn = '//span[contains(text(), "Short Answer")]';
+    this.paraAnswerButton = '//span[contains(text(), "Paragraph")]'
+    this.multipleChoiceButton = '//span[contains(text(), "Multiple Choice")]';
+    this.photoEvidenceButton='//span[contains(text(), "Photo Evidence")]';  
+    this.shortLabelPlaceholder='//input[@placeholder="Field label"][1]'
+    this.paraLabelPlaceholder='//input[@placeholder="Field label"][2]'
+    this.multipleLabelPlaceholder='//input[@placeholder="Field Label"]'
+    this.photoEvidencePlaceholder='//input[@placeholder="Photo Label"]'
+    this.shortAnsPlaceholder='//input[@placeholder="Answer Placeholder"]'
+    this.paraAnsPlaceholder= '//textarea[@id="answer-placeholder"]'
+    this.multipleAns1Placeholder='//input[@placeholder="Add Option"][1]'
+    this.multipleAns2Placeholder='//input[@placeholder="Add Option"][2]'
+    this.multipleAns3Placeholder='//input[@placeholder="Add Option"][3]'
     this.pageIsNotAccessable='//html/body/main/div/div/div/div[2]'
-    this.optionsButton='//html/body/main/div/div/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/button'
+    this.optionsButton='//html/body/main/div/div/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/button' // bash bro help me 
     this.deleteWorkflowButton="//button[.//span[contains(text(),'Delete Workflow')]]"
-    this.conformDeleteButton='//html/body/main/div/div/div/div[2]/div[3]/div/div[3]/div[2]'
-    this.searchWorkflowFiels='//html/body/main/div/div/div[3]/div[1]/div[1]/div/label/span'
-    this.noDataText='//html/body/main/div/div/div[3]/div[2]/div/div/table/tbody/tr/td/div/p'
-
-
+    this.conformDeleteButton='//button[contains(text(), "Delete")]'
+    this.searchWorkflowFiels='//input[@placeholder="Search Workflow"]'
+    this.noDataText='//p[contains(text(),"No Data")]'
   };
+
 
   async clickCreateWorkflowBtn() {
     await this.page.click(this.createWorkflowBtn)
@@ -40,6 +39,7 @@ class  WorkflowPage {
   async enterWorkflowTitle(title) {
     await this.page.fill(this.workflowTitleInput, title)
   }
+  
   async enterWorkflowDescription(description) {
     await this.page.fill(this.workflowDescriptionInput, description)
   }
@@ -60,6 +60,7 @@ class  WorkflowPage {
   async addFormButton() {
     await this.page.click(this.addFormButtonbtn)
   }
+  
   async addShortAnswer()
   {
     await this.page.click(this.shortAnswerButtonbtn)
@@ -78,6 +79,7 @@ class  WorkflowPage {
   async addPhotoEvidence(){
     await this.page.click(this.photoEvidenceButton)
   }
+  
   async fillForms(){
     await this.page.fill(this.shortLabelPlaceholder, "Give us a short Short Answer")
     await this.page.fill(this.shortAnsPlaceholder, "Answer")
@@ -89,9 +91,11 @@ class  WorkflowPage {
     await this.page.fill(this.multipleAns3Placeholder, "Green")
     await this.page.fill(this.photoEvidencePlaceholder, "Photo Evidence")
   }
+  
   async visitURL(modifiedURL){
     await this.page.goto(modifiedURL)
   }
+  
   async notAccessableMessage(){
     const errorMsg= await this.page.locator(this.pageIsNotAccessable).textContent()
     expect(errorMsg).toContain("The workflow you're trying to access doesn't exist or  may have been removed.");
@@ -102,23 +106,23 @@ class  WorkflowPage {
     await this.page.click(this.optionsButton)
     await this.page.click(this.deleteWorkflowButton)
   }
+  
   async getPageUrl(){
     let pageUrl= await this.page.url();
     return pageUrl;
   }
-async confirmDelete(){
-  await this.page.click(this.conformDeleteButton)
-}
+  
+  async confirmDelete(){
+    await this.page.click(this.conformDeleteButton) 
+  }
 
-async searchWorkflow(workflowID){
-  await this.page.fill(workflowID)
-}
+  async searchWorkflow(workflowID){
+    await this.page.fill(this.searchWorkflowFiels, workflowID)
+  }
 
-async noSearchFound(){
-  const errMsg=await this.page.locator(this.noDataText).textContent()
-  expect(errMsg).toContain('No Data')
-}
-
+  async noSearchFound(){
+    await this.page.locator(this.noDataText).isVisible()
+  }
 }
 
 module.exports = WorkflowPage;

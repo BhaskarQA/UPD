@@ -52,10 +52,7 @@ When('I Fill up the forms', async function () {
     await workflowPage.fillForms(); 
   });
   
-
-
 /////////////////////////////////////////
-
 
 Given('I get the workflow URL', async function () {
     this.workflowStepPage = new WorkflowPage(this.page);
@@ -75,9 +72,7 @@ Then('The page must not be accessable', async function () {
     await this.workflowStepPage.notAccessableMessage();
 });
 
-
 /////////////////////////////////////////
-
 
 When('I visit the editing workflow', async function () {
   await this.page.goto(workflowUrl);
