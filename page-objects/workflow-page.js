@@ -29,6 +29,12 @@ class  WorkflowPage {
     this.conformDeleteButton='//button[contains(text(), "Delete")]'
     this.searchWorkflowFiels='//input[@placeholder="Search Workflow"]'
     this.noDataText='//p[contains(text(),"No Data")]'
+    this.importWorkflowButton="//button[.//span[contains(text(),'Import Workflow')]]"
+    this.nextButton='//p[contains(text(),"Next")]'
+    this.replaceWorkflowCheckbox='//input[@type="checkbox"]'
+    this.importButtonBtn='//p[text()="Import"]'
+    this.nodeNumber7='//p[@class="text-sm font-semibold text-iceGrey700" and text()="7"]'
+    this.nodeNumber6='//p[@class="text-sm font-semibold text-iceGrey700" and text()="6"]'
   };
 
 
@@ -123,6 +129,31 @@ class  WorkflowPage {
   async noSearchFound(){
     await this.page.locator(this.noDataText).isVisible()
   }
+  async importWorkflow(){
+    await this.page.click(this.optionsButton)
+    await this.page.click(this.importWorkflowButton)
+    await this.page.setInputFiles('input[type="file"]', "inputFiles/AutomationFile.xlsx")
+  }
+  async importWithoutReplace(){
+    await this.page.click(this.nextButton)
+  }
+  async importAndReplace(){
+    await this.page.click(this.replaceWorkflowCheckbox)
+    await this.page.click(this.nextButton)
+
+  }
+  async uploadMedia(){
+    await this.page.setInputFiles('input[type="file"]', [
+      'inputFiles/image1.jpg',
+      'inputFiles/image2.jpg',
+      'inputFiles/image3.jpg'
+    ]);
+  }
+  async importButton(){
+    await this.page.click(this.importButtonBtn)
+  }
+  
+
 }
 
 module.exports = WorkflowPage;

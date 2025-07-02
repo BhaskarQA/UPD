@@ -1,10 +1,10 @@
 class WorkflowStepPage {
+    
     constructor(page) {
+
         this.page = page;
-        // Locators
         this.workflowTitleInInsideFlow = '(//input[@type="text"])[1]'
         this.nodeNumbers = '//div[@class="react-flow__nodes"]//div[contains(@class,"react-flow__node")]//input[@placeholder="Title"]//following::span[2]'
-
         this.typeInput = '//input[@placeholder="Step Title"]';
         this.instructionTextarea = '(//div[@class="ql-editor ql-blank"])[2]';
         this.createNewNode = '(//button[contains(@class,"rizzui-button active:enabled:translate-y-px")])[1]';
@@ -19,7 +19,6 @@ class WorkflowStepPage {
         const nodes = this.page.locator(this.nodeNumbers);
         const count = await nodes.count();
         console.log(`Found ${count} nodes`);
-
         for (let i = 0; i < count; i++) {
             const text = await nodes.nth(i).textContent();
             console.log(`Node ${i} text: "${text.trim()}"`);
@@ -29,7 +28,6 @@ class WorkflowStepPage {
                 return;
             }
         }
-
         throw new Error(`No node found with text: ${targetText}`);
     }
 
@@ -42,9 +40,19 @@ class WorkflowStepPage {
     async fillInstruction(instruction) {
         await this.page.fill(this.instructionTextarea, instruction);
     }
+
+    async getTypeText() {
+        return await this.page.inputValue(this.typeInput);
+    }
+
+    async getInstructionText() {
+        return await this.page.inputValue(this.instructionTextarea);
+    }
+    
     async createNewNodeInFlow() {
         await this.page.click(this.createNewNode)
     }
+
 
 }
 module.exports = WorkflowStepPage;

@@ -1,12 +1,12 @@
 [
   {
-    "description": "  As a user of the Ucentrics application\n  I want to be able to login with valid credentials\n  So that I can access the application features",
+    "description": "",
     "elements": [
       {
         "description": "",
-        "id": "user-login;i-log-in-with-valid-credentials",
+        "id": "workflow-feature-behaviour;i-log-in-with-valid-credentials",
         "keyword": "Scenario",
-        "line": 6,
+        "line": 3,
         "name": "I log in with valid credentials",
         "steps": [
           {
@@ -14,151 +14,127 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 255926666
+              "duration": 334948499
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 7,
+            "line": 4,
             "name": "I launch the Ucentrics URL and navigate to the login page",
             "match": {
-              "location": "step-definitions/login-steps.js:7"
+              "location": "step-definitions/login-steps.js:14"
             },
             "result": {
-              "status": "passed",
-              "duration": 9822533542
+              "status": "failed",
+              "duration": 5871710208,
+              "error_message": "page.waitForTimeout: Target page, context or browser has been closed\n    at LoginPage.navigate (/Users/aravindm/Desktop/UPD/page-objects/login-page.js:32:21)\n    at async World.<anonymous> (/Users/aravindm/Desktop/UPD/step-definitions/login-steps.js:16:3)"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 8,
+            "line": 5,
             "name": "I enter a valid email and password",
             "match": {
-              "location": "step-definitions/login-steps.js:15"
+              "location": "step-definitions/login-steps.js:22"
             },
             "result": {
-              "status": "passed",
-              "duration": 157746166
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 9,
+            "line": 6,
             "name": "I click the Sign in button",
             "match": {
-              "location": "step-definitions/login-steps.js:30"
+              "location": "step-definitions/login-steps.js:37"
             },
             "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
               "status": "passed",
-              "duration": 2074279833
+              "duration": 3629499
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "workflow-feature-behaviour;creating-workflow",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Creating workflow",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 43166
             }
           },
           {
             "arguments": [],
-            "keyword": "Then ",
+            "keyword": "Given ",
             "line": 10,
-            "name": "I should be redirected to the dashboard page",
+            "name": "I click on the createWorkflow",
             "match": {
-              "location": "step-definitions/login-steps.js:34"
+              "location": "step-definitions/workflowBehaviour-steps.js:12"
             },
             "result": {
-              "status": "passed",
-              "duration": 10002584500
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 11,
-            "name": "I should verify the page title",
-            "match": {
-              "location": "step-definitions/login-steps.js:40"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 3271082
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 131081541
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "user-login;failed-login-with-invalid-credentials",
-        "keyword": "Scenario",
-        "line": 13,
-        "name": "Failed login with invalid credentials",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 96919916
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 14,
-            "name": "I launch the Ucentrics URL and navigate to the login page",
-            "match": {
-              "location": "step-definitions/login-steps.js:7"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 9701888957
+              "status": "failed",
+              "duration": 407791,
+              "error_message": "page.waitForTimeout: Target page, context or browser has been closed\n    at World.<anonymous> (/Users/aravindm/Desktop/UPD/step-definitions/workflowBehaviour-steps.js:14:21)"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 15,
-            "name": "I enter invalid username and password",
+            "line": 11,
+            "name": "I enter the Title and Description for the workflow",
             "match": {
-              "location": "step-definitions/login-steps.js:20"
+              "location": "step-definitions/workflowBehaviour-steps.js:49"
             },
             "result": {
-              "status": "passed",
-              "duration": 158104832
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 16,
-            "name": "I click the Sign in button",
+            "line": 12,
+            "name": "I click on sumbit workflow button",
             "match": {
-              "location": "step-definitions/login-steps.js:30"
+              "location": "step-definitions/workflowBehaviour-steps.js:55"
             },
             "result": {
-              "status": "passed",
-              "duration": 2077065792
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 17,
-            "name": "I should see an error message",
+            "line": 13,
+            "name": "I verify the workflow is created successfull",
             "match": {
-              "location": "step-definitions/login-steps.js:46"
+              "location": "step-definitions/workflowBehaviour-steps.js:18"
             },
             "result": {
-              "status": "passed",
-              "duration": 19979499
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
@@ -166,7 +142,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 26162042
+              "duration": 734457
             }
           }
         ],
@@ -175,69 +151,156 @@
       },
       {
         "description": "",
-        "id": "user-login;failed-login-with-empty-credentials",
+        "id": "workflow-feature-behaviour;adding-nodes-to-the-workflow",
         "keyword": "Scenario",
-        "line": 19,
-        "name": "Failed login with empty credentials",
+        "line": 15,
+        "name": "Adding nodes to the workflow",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 160069708
+              "duration": 32582
             }
           },
           {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 20,
-            "name": "I launch the Ucentrics URL and navigate to the login page",
-            "match": {
-              "location": "step-definitions/login-steps.js:7"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 9712224166
-            }
-          },
-          {
-            "arguments": [],
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "Type",
+                      "Instruction"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "Step 1:- Setting up the machine",
+                      "Setting Up Machine means the carrying out of final machine adjustments and making ready before a machine can be successfully operated."
+                    ]
+                  }
+                ]
+              }
+            ],
             "keyword": "When ",
-            "line": 21,
-            "name": "I leave username and password fields empty",
+            "line": 17,
+            "name": "I fill the details for type section and instruction section",
             "match": {
-              "location": "step-definitions/login-steps.js:25"
+              "location": "step-definitions/workflowBehaviour-steps.js:33"
             },
             "result": {
-              "status": "passed",
-              "duration": 153890416
+              "status": "failed",
+              "duration": 720167,
+              "error_message": "page.waitForTimeout: Target page, context or browser has been closed\n    at World.<anonymous> (/Users/aravindm/Desktop/UPD/step-definitions/workflowBehaviour-steps.js:37:21)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "I Upload Set of Images to the steps",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:61"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 21,
+            "name": "I Add forms to the workfolow",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:67"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 22,
-            "name": "I click the Sign in button",
+            "name": "I Fill up the forms",
             "match": {
-              "location": "step-definitions/login-steps.js:30"
+              "location": "step-definitions/workflowBehaviour-steps.js:80"
             },
             "result": {
-              "status": "passed",
-              "duration": 2067924459
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
             "arguments": [],
-            "keyword": "Then ",
-            "line": 23,
-            "name": "I should see validation error messages",
+            "keyword": "And ",
+            "line": 25,
+            "name": "I create a another node in workflow",
             "match": {
-              "location": "step-definitions/login-steps.js:59"
+              "location": "step-definitions/workflowBehaviour-steps.js:43"
             },
             "result": {
-              "status": "passed",
-              "duration": 13597415
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "Type",
+                      "Instruction"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "Step 2:- Setting up the machine",
+                      "Setting Up Machine means the carrying out of final machine adjustments and making ready before a machine can be successfully operated."
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 26,
+            "name": "I fill the details for type section and instruction section",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:33"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "I Add forms to the workfolow",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:67"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 30,
+            "name": "I Fill up the forms",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:80"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
@@ -245,7 +308,141 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 11371334
+              "duration": 450917
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "workflow-feature-behaviour;check-multitenent-access",
+        "keyword": "Scenario",
+        "line": 40,
+        "name": "check multitenent access",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 88666
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 42,
+            "name": "I get the workflow URL",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:87"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 301291,
+              "error_message": "TypeError: Cannot read properties of undefined (reading 'split')\n    at World.<anonymous> (/Users/aravindm/Desktop/UPD/step-definitions/workflowBehaviour-steps.js:90:53)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 43,
+            "name": "I modify the tenent in the URL and vivit the page",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:94"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 44,
+            "name": "The page must not be accessable",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:100"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1198250
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "workflow-feature-behaviour;delete-workflow",
+        "keyword": "Scenario",
+        "line": 46,
+        "name": "Delete workflow",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 418542
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 47,
+            "name": "I visit the editing workflow",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:107"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 4776165,
+              "error_message": "page.goto: Target page, context or browser has been closed\n    at World.<anonymous> (/Users/aravindm/Desktop/UPD/step-definitions/workflowBehaviour-steps.js:108:19)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 48,
+            "name": "I delete the workflow",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:112"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 49,
+            "name": "I check the workflow is deleted",
+            "match": {
+              "location": "step-definitions/workflowBehaviour-steps.js:118"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 820999
             }
           }
         ],
@@ -253,11 +450,11 @@
         "type": "scenario"
       }
     ],
-    "id": "user-login",
+    "id": "workflow-feature-behaviour",
     "line": 1,
     "keyword": "Feature",
-    "name": "User Login",
+    "name": "Workflow Feature Behaviour",
     "tags": [],
-    "uri": "features/login.feature"
+    "uri": "features/workflowBehaviour.feature"
   }
 ]
